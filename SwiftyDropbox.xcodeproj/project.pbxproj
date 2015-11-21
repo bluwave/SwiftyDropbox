@@ -17,11 +17,16 @@
 		C2FDC9441C00C30300CC5598 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9381C00C30300CC5598 /* Client.swift */; };
 		C2FDC9451C00C30300CC5598 /* DropboxClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9391C00C30300CC5598 /* DropboxClient.swift */; };
 		C2FDC9461C00C30300CC5598 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC93A1C00C30300CC5598 /* Files.swift */; };
-		C2FDC9471C00C30300CC5598 /* SecurityUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FDC93B1C00C30300CC5598 /* SecurityUtil.h */; };
-		C2FDC9481C00C30300CC5598 /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC93C1C00C30300CC5598 /* SecurityUtil.m */; };
 		C2FDC9491C00C30300CC5598 /* Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC93D1C00C30300CC5598 /* Sharing.swift */; };
 		C2FDC94A1C00C30300CC5598 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC93E1C00C30300CC5598 /* Team.swift */; };
 		C2FDC94B1C00C30300CC5598 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC93F1C00C30300CC5598 /* Users.swift */; };
+		C2FDC95F1C00C40E00CC5598 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FDC9561C00C40500CC5598 /* Alamofire.framework */; };
+		C2FDC9641C00C45000CC5598 /* DropboxUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9601C00C45000CC5598 /* DropboxUtil.swift */; };
+		C2FDC9651C00C45000CC5598 /* FilesRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9611C00C45000CC5598 /* FilesRoutes.swift */; };
+		C2FDC9661C00C45000CC5598 /* SharingRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9621C00C45000CC5598 /* SharingRoutes.swift */; };
+		C2FDC9671C00C45000CC5598 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC9631C00C45000CC5598 /* UsersRoutes.swift */; };
+		C2FDC96E1C00C4D600CC5598 /* SecurityUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FDC96C1C00C4D600CC5598 /* SecurityUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2FDC96F1C00C4D600CC5598 /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FDC96D1C00C4D600CC5598 /* SecurityUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +36,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = C2FDC9191C00C15E00CC5598;
 			remoteInfo = SwiftyDropbox;
+		};
+		C2FDC9551C00C40500CC5598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS";
+		};
+		C2FDC9571C00C40500CC5598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "Alamofire OSX";
+		};
+		C2FDC9591C00C40500CC5598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "Alamofire watchOS";
+		};
+		C2FDC95B1C00C40500CC5598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "Alamofire iOS Tests";
+		};
+		C2FDC95D1C00C40500CC5598 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "Alamofire OSX Tests";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -48,11 +88,16 @@
 		C2FDC9381C00C30300CC5598 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		C2FDC9391C00C30300CC5598 /* DropboxClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxClient.swift; sourceTree = "<group>"; };
 		C2FDC93A1C00C30300CC5598 /* Files.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
-		C2FDC93B1C00C30300CC5598 /* SecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
-		C2FDC93C1C00C30300CC5598 /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		C2FDC93D1C00C30300CC5598 /* Sharing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sharing.swift; sourceTree = "<group>"; };
 		C2FDC93E1C00C30300CC5598 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		C2FDC93F1C00C30300CC5598 /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "libs/alamo-fire/Alamofire.xcodeproj"; sourceTree = "<group>"; };
+		C2FDC9601C00C45000CC5598 /* DropboxUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxUtil.swift; sourceTree = "<group>"; };
+		C2FDC9611C00C45000CC5598 /* FilesRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesRoutes.swift; sourceTree = "<group>"; };
+		C2FDC9621C00C45000CC5598 /* SharingRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingRoutes.swift; sourceTree = "<group>"; };
+		C2FDC9631C00C45000CC5598 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRoutes.swift; sourceTree = "<group>"; };
+		C2FDC96C1C00C4D600CC5598 /* SecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		C2FDC96D1C00C4D600CC5598 /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FDC95F1C00C40E00CC5598 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +126,7 @@
 				C2FDC91C1C00C15F00CC5598 /* Source */,
 				C2FDC9281C00C15F00CC5598 /* SwiftyDropboxTests */,
 				C2FDC91B1C00C15F00CC5598 /* Products */,
+				C2FDC94C1C00C3F400CC5598 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +142,10 @@
 		C2FDC91C1C00C15F00CC5598 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C2FDC9601C00C45000CC5598 /* DropboxUtil.swift */,
+				C2FDC9611C00C45000CC5598 /* FilesRoutes.swift */,
+				C2FDC9621C00C45000CC5598 /* SharingRoutes.swift */,
+				C2FDC9631C00C45000CC5598 /* UsersRoutes.swift */,
 				C2FDC9341C00C30300CC5598 /* Async.swift */,
 				C2FDC9351C00C30300CC5598 /* Auth.swift */,
 				C2FDC9361C00C30300CC5598 /* BabelSerializers.swift */,
@@ -102,8 +153,8 @@
 				C2FDC9381C00C30300CC5598 /* Client.swift */,
 				C2FDC9391C00C30300CC5598 /* DropboxClient.swift */,
 				C2FDC93A1C00C30300CC5598 /* Files.swift */,
-				C2FDC93B1C00C30300CC5598 /* SecurityUtil.h */,
-				C2FDC93C1C00C30300CC5598 /* SecurityUtil.m */,
+				C2FDC96C1C00C4D600CC5598 /* SecurityUtil.h */,
+				C2FDC96D1C00C4D600CC5598 /* SecurityUtil.m */,
 				C2FDC93D1C00C30300CC5598 /* Sharing.swift */,
 				C2FDC93E1C00C30300CC5598 /* Team.swift */,
 				C2FDC93F1C00C30300CC5598 /* Users.swift */,
@@ -122,6 +173,26 @@
 			path = SwiftyDropboxTests;
 			sourceTree = "<group>";
 		};
+		C2FDC94C1C00C3F400CC5598 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2FDC94E1C00C40500CC5598 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2FDC9561C00C40500CC5598 /* Alamofire.framework */,
+				C2FDC9581C00C40500CC5598 /* Alamofire.framework */,
+				C2FDC95A1C00C40500CC5598 /* Alamofire.framework */,
+				C2FDC95C1C00C40500CC5598 /* Alamofire iOS Tests.xctest */,
+				C2FDC95E1C00C40500CC5598 /* Alamofire OSX Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -129,7 +200,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2FDC9471C00C30300CC5598 /* SecurityUtil.h in Headers */,
+				C2FDC96E1C00C4D600CC5598 /* SecurityUtil.h in Headers */,
 				C2FDC91E1C00C15F00CC5598 /* SwiftyDropbox.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +272,12 @@
 			mainGroup = C2FDC9101C00C15E00CC5598;
 			productRefGroup = C2FDC91B1C00C15F00CC5598 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C2FDC94E1C00C40500CC5598 /* Products */;
+					ProjectRef = C2FDC94D1C00C40500CC5598 /* Alamofire.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C2FDC9191C00C15E00CC5598 /* SwiftyDropbox */,
@@ -208,6 +285,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C2FDC9561C00C40500CC5598 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = C2FDC9551C00C40500CC5598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C2FDC9581C00C40500CC5598 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = C2FDC9571C00C40500CC5598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C2FDC95A1C00C40500CC5598 /* Alamofire.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Alamofire.framework;
+			remoteRef = C2FDC9591C00C40500CC5598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C2FDC95C1C00C40500CC5598 /* Alamofire iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire iOS Tests.xctest";
+			remoteRef = C2FDC95B1C00C40500CC5598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C2FDC95E1C00C40500CC5598 /* Alamofire OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Alamofire OSX Tests.xctest";
+			remoteRef = C2FDC95D1C00C40500CC5598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C2FDC9181C00C15E00CC5598 /* Resources */ = {
@@ -233,14 +348,18 @@
 			files = (
 				C2FDC9421C00C30300CC5598 /* BabelSerializers.swift in Sources */,
 				C2FDC9401C00C30300CC5598 /* Async.swift in Sources */,
+				C2FDC9651C00C45000CC5598 /* FilesRoutes.swift in Sources */,
 				C2FDC9461C00C30300CC5598 /* Files.swift in Sources */,
 				C2FDC9411C00C30300CC5598 /* Auth.swift in Sources */,
+				C2FDC9641C00C45000CC5598 /* DropboxUtil.swift in Sources */,
 				C2FDC9451C00C30300CC5598 /* DropboxClient.swift in Sources */,
 				C2FDC9441C00C30300CC5598 /* Client.swift in Sources */,
+				C2FDC9661C00C45000CC5598 /* SharingRoutes.swift in Sources */,
 				C2FDC9431C00C30300CC5598 /* BabelValidators.swift in Sources */,
 				C2FDC9491C00C30300CC5598 /* Sharing.swift in Sources */,
 				C2FDC94A1C00C30300CC5598 /* Team.swift in Sources */,
-				C2FDC9481C00C30300CC5598 /* SecurityUtil.m in Sources */,
+				C2FDC9671C00C45000CC5598 /* UsersRoutes.swift in Sources */,
+				C2FDC96F1C00C4D600CC5598 /* SecurityUtil.m in Sources */,
 				C2FDC94B1C00C30300CC5598 /* Users.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
