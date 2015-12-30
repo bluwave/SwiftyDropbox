@@ -1,5 +1,7 @@
 import UIKit
+#if os(iOS)
 import WebKit
+#endif
 
 import Security
 
@@ -487,9 +489,15 @@ public class DropboxAuthManager {
     }
 }
 
-
-public class DropboxConnectController : UIViewController, WKNavigationDelegate {
+//#if os(iOS)
+public class DropboxConnectController : UIViewController {
+//    #else
+//public class DropboxConnectController : UIViewController, WKNavigationDelegate {
+//#endif
+    
+#if os(iOS)
     var webView : WKWebView!
+#endif
     
     var onWillDismiss: ((didCancel: Bool) -> Void)?
     var tryIntercept: ((url: NSURL) -> Bool)?
@@ -503,7 +511,9 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     
     public init(URL: NSURL, tryIntercept: ((url: NSURL) -> Bool)) {
         super.init(nibName: nil, bundle: nil)
+#if os(iOS)
         self.startURL = URL
+#endif
         self.tryIntercept = tryIntercept
     }
     
@@ -514,10 +524,12 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Link to Dropbox"
+#if os(iOS)
         self.webView = WKWebView(frame: self.view.bounds)
         self.view.addSubview(self.webView)
         
         self.webView.navigationDelegate = self
+#endif
         
         self.view.backgroundColor = UIColor.whiteColor()
         
@@ -527,6 +539,7 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+#if os(iOS)
         if !webView.canGoBack {
             if nil != startURL {
                 loadURL(startURL!)
@@ -535,8 +548,10 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
                 webView.loadHTMLString("There is no `startURL`", baseURL: nil)
             }
         }
+#endif
     }
     
+#if os(iOS)
     public func webView(webView: WKWebView,
         decidePolicyForNavigationAction navigationAction: WKNavigationAction,
         decisionHandler: (WKNavigationActionPolicy) -> Void) {
@@ -548,6 +563,7 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
         }
         return decisionHandler(.Allow)
     }
+
     
     public var startURL: NSURL? {
         didSet(oldURL) {
@@ -556,7 +572,8 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
             }
         }
     }
-    
+
+
     public func loadURL(url: NSURL) {
         webView.loadRequest(NSURLRequest(URL: url))
     }
@@ -577,11 +594,11 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
         dismiss(false, animated: animated)
     }
     
-    func dismiss(asCancel: Bool, animated: Bool) {
-        webView.stopLoading()
-        
-        self.onWillDismiss?(didCancel: asCancel)
-        presentingViewController?.dismissViewControllerAnimated(animated, completion: nil)
-    }
-    
+//    func dismiss(asCancel: Bool, animated: Bool) {
+//        webView.stopLoading()
+//        
+//        self.onWillDismiss?(didCancel: asCancel)
+//        presentingViewController?.dismissViewControllerAnimated(animated, completion: nil)
+//    }
+#endif
 }
