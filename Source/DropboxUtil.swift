@@ -60,13 +60,11 @@ public class Dropbox {
     public static func setupWithAppKey(appKey : String) {
         precondition(DropboxAuthManager.sharedAuthManager == nil, "Only call `Dropbox.initAppWithKey` once")
         DropboxAuthManager.sharedAuthManager = DropboxAuthManager(appKey: appKey)
-
-        if let token = DropboxAuthManager.sharedAuthManager.getFirstAccessToken() {
-            Dropbox.authorizedClient = DropboxClient(accessToken: token)
-            DropboxClient.sharedClient = Dropbox.authorizedClient
-        }
+        
+        setupAuthorizedClients()
     }
 
+    #if os(iOS)
     /// Present the OAuth2 authorization request page by presenting a web view controller modally
     ///
     /// - parameter controller: The controller to present from
@@ -75,7 +73,18 @@ public class Dropbox {
         precondition(Dropbox.authorizedClient == nil, "Client is already authorized")
         DropboxAuthManager.sharedAuthManager.authorizeFromController(controller)
     }
-
+    #endif
+    
+    /// Authorize Dropbox client with access token
+    ///
+    /// - parameter accessToken: The access token to authorize client
+    public static func authorizeWithAccessToken(accessToken:DropboxAccessToken) {
+        precondition(DropboxAuthManager.sharedAuthManager != nil, "Call `Dropbox.initAppWithKey` before calling this method")
+        precondition(Dropbox.authorizedClient == nil, "Client is already authorized")
+        DropboxAuthManager.sharedAuthManager.storeAccessToken(accessToken)
+        setupAuthorizedClients()
+    }
+    
     /// Handle a redirect and automatically initialize the client and save the token.
     public static func handleRedirectURL(url: NSURL) -> DropboxAuthResult? {
         precondition(DropboxAuthManager.sharedAuthManager != nil, "Call `Dropbox.initAppWithKey` before calling this method")
@@ -105,6 +114,13 @@ public class Dropbox {
         DropboxAuthManager.sharedAuthManager.clearStoredAccessTokens()
         Dropbox.authorizedClient = nil
         DropboxClient.sharedClient = nil
+    }
+    
+    private static func setupAuthorizedClients() {
+        if let token = DropboxAuthManager.sharedAuthManager.getFirstAccessToken() {
+            Dropbox.authorizedClient = DropboxClient(accessToken: token)
+            DropboxClient.sharedClient = Dropbox.authorizedClient
+        }
     }
 }
 
