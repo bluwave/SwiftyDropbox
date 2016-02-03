@@ -2,8 +2,8 @@ import Foundation
 import Alamofire
 
 public class Box<T> {
-	public let unboxed : T
-	init (_ v : T) { self.unboxed = v }
+    public let unboxed : T
+    init (_ v : T) { self.unboxed = v }
 }
 
 public class BabelClient {
@@ -87,7 +87,7 @@ func utf8Decode(data: NSData) -> String {
 
 func asciiEscape(s: String) -> String {
     var out : String = ""
-
+    
     for char in s.unicodeScalars {
         var esc = "\(char)"
         if !char.isASCII() {
@@ -116,12 +116,12 @@ public class BabelRequest<RType : JSONSerializer, EType : JSONSerializer> {
         responseSerializer: RType,
         errorSerializer: EType)
     {
-            self.errorSerializer = errorSerializer
-            self.responseSerializer = responseSerializer
-            self.request = request
+        self.errorSerializer = errorSerializer
+        self.responseSerializer = responseSerializer
+        self.request = request
     }
     
-
+    
     
     func handleResponseError(response: NSHTTPURLResponse?, data: NSData?, error: ErrorType?) -> CallError<EType.ValueType> {
         let requestId = response?.allHeaderFields["X-Dropbox-Request-Id"] as? String
@@ -140,7 +140,7 @@ public class BabelRequest<RType : JSONSerializer, EType : JSONSerializer> {
                 }
                 return .BadInputError(message, requestId)
             case 429:
-                 return .RateLimitError
+                return .RateLimitError
             case 403, 404, 409:
                 let json = parseJSON(data!)
                 switch json {
@@ -174,10 +174,10 @@ public class BabelRpcRequest<RType : JSONSerializer, EType : JSONSerializer> : B
             headers[header] = val
         }
         
-        let request = client.manager.request(.POST, url, parameters: ["":""], headers: headers, encoding: ParameterEncoding.Custom {(convertible, _) in
-                let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
-                mutableRequest.HTTPBody = dumpJSON(params)
-                return (mutableRequest, nil)
+        let request = client.manager.request(.POST, url, parameters: ["": ""], headers: headers, encoding: ParameterEncoding.Custom {(convertible, _) in
+            let mutableRequest = convertible.URLRequest.copy() as! NSMutableURLRequest
+            mutableRequest.HTTPBody = dumpJSON(params)
+            return (mutableRequest, nil)
             })
         super.init(request: request,
             responseSerializer: responseSerializer,
@@ -209,12 +209,12 @@ public enum BabelUploadBody {
 }
 
 public class BabelUploadRequest<RType : JSONSerializer, EType : JSONSerializer> : BabelRequest<RType, EType> {
-
+    
     init(
         client: BabelClient,
         host: String,
         route: String,
-        params: JSON, 
+        params: JSON,
         responseSerializer: RType, errorSerializer: EType,
         body: BabelUploadBody) {
             let url = "\(client.baseHosts[host]!)\(route)"
@@ -242,11 +242,11 @@ public class BabelUploadRequest<RType : JSONSerializer, EType : JSONSerializer> 
                 request = client.manager.upload(.POST, url, headers: headers, stream: stream)
             }
             super.init(request: request,
-                       responseSerializer: responseSerializer,
-                       errorSerializer: errorSerializer)
+                responseSerializer: responseSerializer,
+                errorSerializer: errorSerializer)
             request.resume()
     }
-
+    
     
     /// Called as the upload progresses.
     ///
@@ -260,7 +260,7 @@ public class BabelUploadRequest<RType : JSONSerializer, EType : JSONSerializer> 
     
     /// Called when a request completes.
     ///
-    /// :param: completionHandler 
+    /// :param: completionHandler
     ///         A callback taking two arguments (`response`, `error`) which handles the result of the call appropriately.
     /// :returns: The request, for chaining purposes.
     public func response(completionHandler: (RType.ValueType?, CallError<EType.ValueType>?) -> Void) -> Self {
@@ -275,7 +275,7 @@ public class BabelUploadRequest<RType : JSONSerializer, EType : JSONSerializer> 
         }
         return self
     }
-
+    
 }
 
 public class BabelDownloadRequest<RType : JSONSerializer, EType : JSONSerializer> : BabelRequest<RType, EType> {
@@ -284,7 +284,7 @@ public class BabelDownloadRequest<RType : JSONSerializer, EType : JSONSerializer
         let url = "\(client.baseHosts[host]!)\(route)"
         var headers = [String : String]()
         urlPath = nil
-
+        
         if let data = dumpJSON(params) {
             let value = asciiEscape(utf8Decode(data))
             headers["Dropbox-Api-Arg"] = value
@@ -304,14 +304,14 @@ public class BabelDownloadRequest<RType : JSONSerializer, EType : JSONSerializer
         }
         
         let request = client.manager.download(.POST, url, headers: headers, destination: dest)
-
+        
         super.init(request: request, responseSerializer: responseSerializer, errorSerializer: errorSerializer)
         _self = self
         request.resume()
     }
     
     /// Called as the download progresses
-    /// 
+    ///
     /// :param: closure
     ///         a callback taking three arguments (`bytesRead`, `totalBytesRead`, `totalBytesExpectedToRead`)
     /// :returns: The request, for chaining purposes.
@@ -329,17 +329,17 @@ public class BabelDownloadRequest<RType : JSONSerializer, EType : JSONSerializer
         
         self.request.validate()
             .response {
-            (request, response, dataObj, error) -> Void in
-            if error != nil {
-                let data = self.urlPath.flatMap { NSData(contentsOfURL: $0) }
-                completionHandler(nil, self.handleResponseError(response, data: data, error: error))
-            } else {
-                let result = response!.allHeaderFields["Dropbox-Api-Result"] as! String
-                let resultData = result.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-                let resultObject = self.responseSerializer.deserialize(parseJSON(resultData))
-                
-                completionHandler( (resultObject, self.urlPath!), nil)
-            }
+                (request, response, dataObj, error) -> Void in
+                if error != nil {
+                    let data = self.urlPath.flatMap { NSData(contentsOfURL: $0) }
+                    completionHandler(nil, self.handleResponseError(response, data: data, error: error))
+                } else {
+                    let result = response!.allHeaderFields["Dropbox-Api-Result"] as! String
+                    let resultData = result.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+                    let resultObject = self.responseSerializer.deserialize(parseJSON(resultData))
+                    
+                    completionHandler( (resultObject, self.urlPath!), nil)
+                }
         }
         return self
     }
