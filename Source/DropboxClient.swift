@@ -5,31 +5,31 @@ import Foundation
 import Alamofire
 /// The client for the API. Call routes using the namespaces inside this object.
 public class DropboxClient : BabelClient {
-	let accessToken : DropboxAccessToken
-	static var version = "2.0.3"
-
-	/// Shared instance for convenience
-	public static var sharedClient : DropboxClient!
-
-	public override func additionalHeaders(noauth : Bool) -> [String: String] {
-		var headers = ["User-Agent": "OfficialDropboxSwiftSDKv2/\(DropboxClient.version)"]
-		if (!noauth) {
-			headers["Authorization"] = "Bearer \(self.accessToken)"
-		}
-		return headers
-	}
-
-	public convenience init(accessToken: DropboxAccessToken) {
-		let manager = Manager(serverTrustPolicyManager: DropboxServerTrustPolicyManager())
+    let accessToken : DropboxAccessToken
+    static var version = "3.0.0"
+    
+    /// Shared instance for convenience
+    public static var sharedClient : DropboxClient!
+    
+    public override func additionalHeaders(noauth : Bool) -> [String: String] {
+        var headers = ["User-Agent": "OfficialDropboxSwiftSDKv2/\(DropboxClient.version)"]
+        if (!noauth) {
+            headers["Authorization"] = "Bearer \(self.accessToken)"
+        }
+        return headers
+    }
+    
+    public convenience init(accessToken: DropboxAccessToken) {
+        let manager = Manager(serverTrustPolicyManager: DropboxServerTrustPolicyManager())
         manager.startRequestsImmediately = false
-		self.init(accessToken: accessToken,
-				  manager: manager,
-				  baseHosts: [
+        self.init(accessToken: accessToken,
+            manager: manager,
+            baseHosts: [
 		              "meta"    : "https://api.dropbox.com/2",
 		              "content" : "https://api-content.dropbox.com/2",
 		              "notify"  : "https://notify.dropboxapi.com/2"
 		          ])
-	}
+    }
     /// Routes within the files namespace. See FilesRoutes for details.
     public var files : FilesRoutes!
     /// Routes within the sharing namespace. See SharingRoutes for details.
